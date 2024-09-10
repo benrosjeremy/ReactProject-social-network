@@ -1,0 +1,95 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    color: #333;
+}
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+#todo-list {
+    list-style-type: none;
+    padding: 0;
+}
+.todo-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+}
+.todo-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+.todo-item input[type="checkbox"] {
+    margin-left: 15px;
+    transform: scale(1.2);
+}
+.todo-item .item-number {
+    font-weight: bold;
+    margin-left: 15px;
+    color: #3498db;
+}
+.todo-item .delete-btn {
+    margin-right: auto;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.todo-item .delete-btn:hover {
+    background-color: #c0392b;
+}
+#controls {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+.control-group {
+    margin-bottom: 15px;
+}
+#add-todo-group {
+    background-color: #e8f8f5;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #a3e4d7;
+}
+input, select, button {
+    padding: 8px 12px;
+    margin-right: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #2980b9;
+}
+#task-count {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+    color: #2c3e50;
+}
+
+
+

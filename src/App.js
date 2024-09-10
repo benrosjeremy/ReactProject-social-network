@@ -4,6 +4,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import Posts from "./Posts";
+import TaskDisplay from './pages/ToDo/TaskDisplay';
 
 const Home = () => (
   <div className="container">
@@ -12,6 +13,7 @@ const Home = () => (
     </header>
     <nav>
       <Link to="/posts">Posts</Link>
+      <Link to="/to-do">to-do</Link>
     </nav>
   </div>
 );
@@ -22,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/posts" element={<Posts />} />
+        <Route path="/to-do" element={<TaskDisplay />} />
       </Routes>
     </Router>
   );
