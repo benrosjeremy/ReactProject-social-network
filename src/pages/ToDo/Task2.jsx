@@ -4,17 +4,27 @@ import { taskListContext } from "./TaskDisplay";
 function Task2(props) {
   const [completed, setCompleted] = useState(props.taskObj.completed);
 
-  const { taskList, setTaskList } = useContext(taskListContext);
+  const { taskList, setTaskList, allTaskList, setAllTaskList } =
+    useContext(taskListContext);
 
   useEffect(() => {
     setCompleted(props.taskObj.completed);
   }, [taskList]);
 
   const deleteTask = () => {
-    setTaskList((list) => {
-      list.splice(props.index, 1);
-      return [...list];
-    });
+    
+      fetch(`http://localhost:3000/todos/${props.taskObj.id}`, {
+        method: "DELETE",
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to delete the todo");
+          }
+          setAllTaskList([...allTaskList]);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
   };
 
   return (
@@ -37,24 +47,3 @@ function Task2(props) {
 }
 
 export default Task2;
-
-// function addTask(title, completed = false) {
-//   taskCount++;
-//   const li = document.createElement("li");
-//   li.className = "todo-item";
-//   li.innerHTML = `
-//         <input type="checkbox" ${completed ? "checked" : ""}>
-//         <span class="item-number">${taskCount}</span>
-//         <span>${title}</span>
-//         <button class="delete-btn">מחק</button>
-//     `;
-//   todoList.appendChild(li);
-//   updateTaskCount();
-
-//   // הוספת אירוע למחיקת המשימה
-//   li.querySelector(".delete-btn").addEventListener("click", function () {
-//     li.remove();
-//     taskCount--;
-//     updateTaskCount();
-//   });
-// }

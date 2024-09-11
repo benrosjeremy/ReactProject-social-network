@@ -1,4 +1,4 @@
-body {
+.task-container {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     max-width: 800px;
     margin: 0 auto;
@@ -93,3 +93,9 @@ button:hover {
 
 
 
+.todo-item span {
+    word-wrap: break-word; /* שובר שורות במידה ויש מילים ארוכות מדי */
+    word-break: break-word; /* שובר מילים ארוכות במיוחד */
+    max-width: 80%; /* מוודא שהתוכן לא יהיה רחב מדי */
+    white-space: normal; /* מאפשר שבירת שורות */
+}

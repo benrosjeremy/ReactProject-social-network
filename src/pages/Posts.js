@@ -1,7 +1,8 @@
+import "../App.css";
 
 import React, { useState, useEffect } from "react";
 
-const Posts = () => {
+const Posts = ({ userId }) => {
   const [posts, setPosts] = useState([]);
   const [selectedPostId, setSelectedPostId] = useState(null); // מזהה הפוסט הנבחר
   const [comments, setComments] = useState({});
@@ -13,10 +14,11 @@ const Posts = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+        const response = await fetch(
+          `http://localhost:3000/posts?userId=${userId}`
+        );
         const data = await response.json();
-        const filteredPosts = data.filter(post => post.userId === 1);
-        setPosts(filteredPosts);
+        setPosts(data);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
@@ -37,7 +39,7 @@ const Posts = () => {
         body: newPostBody,
         userId: 1, // להוסיף את מזהה המשתמש החדש
       };
-      setPosts([newPost, ...posts]); 
+      setPosts([newPost, ...posts]);
       setNewPostTitle("");
       setNewPostBody("");
     }
@@ -49,7 +51,7 @@ const Posts = () => {
   };
 
   const handleSelectPost = (id) => {
-    setSelectedPostId(id === selectedPostId ? null : id); 
+    setSelectedPostId(id === selectedPostId ? null : id);
   };
 
   const filteredPosts = posts.filter((post) =>
@@ -110,8 +112,10 @@ const Posts = () => {
               {selectedPostId === post.id && (
                 <div>
                   <p>{post.body}</p>
-                  <button onClick={() => handleDeletePost(post.id)}>מחק פוסט</button>
-                  
+                  <button onClick={() => handleDeletePost(post.id)}>
+                    מחק פוסט
+                  </button>
+
                   {/* הוספת תגובה */}
                   <div>
                     <input
@@ -120,9 +124,11 @@ const Posts = () => {
                       value={newComment}
                       onChange={(e) => setNewComment(e.target.value)}
                     />
-                    <button onClick={() => handleAddComment(post.id)}>הוסף תגובה</button>
+                    <button onClick={() => handleAddComment(post.id)}>
+                      הוסף תגובה
+                    </button>
                   </div>
-                  
+
                   <div>
                     {comments[post.id]?.map((comment, index) => (
                       <p key={index}>{comment}</p>

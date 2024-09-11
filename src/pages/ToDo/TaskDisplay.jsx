@@ -2,156 +2,64 @@ import "./Task.css";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import TaskSortControl from "./TaskSortControl";
 import TaskFilters from "./TaskFilters";
-import TaskInput2 from "./TaskInput2";
+import AddTask from "./AddTask";
 import TaskList from "./TaskList";
 
 export const taskListContext = createContext();
 
-const userId = 1;
-let allTaskList = [];
 
-function TaskDisplay() {
-  useEffect(() => {
-    allTaskList = [
-      {
-        userId: 1,
-        id: "1",
-        title: "delectus aut autem",
-        completed: false,
-      },
-      {
-        userId: 1,
-        id: "2",
-        title: "quis ut nam facilis et officia qui",
-        completed: false,
-      },
-      {
-        userId: 1,
-        id: "3",
-        title: "fugiat veniam minus",
-        completed: false,
-      },
-      {
-        userId: 1,
-        id: "4",
-        title: "et porro tempora",
-        completed: true,
-      },
-      {
-        userId: 1,
-        id: "5",
-        title:
-          "laboriosam mollitia et enim quasi adipisci quia provident illum",
-        completed: false,
-      },
-      {
-        userId: 1,
-        id: "6",
-        title: "qui ullam ratione quibusdam voluptatem quia omnis",
-        completed: false,
-      },
-      {
-        userId: 1,
-        id: "7",
-        title: "illo expedita consequatur quia in",
-        completed: false,
-      },
-      {
-        userId: 1,
-        id: "8",
-        title: "quo adipisci enim quam ut ab",
-        completed: true,
-      },
-      {
-        userId: 1,
-        id: "9",
-        title: "molestiae perspiciatis ipsa",
-        completed: false,
-      },
-      {
-        userId: 1,
-        id: "10",
-        title: "illo est ratione doloremque quia maiores aut",
-        completed: true,
-      },
-      {
-        userId: 1,
-        id: "11",
-        title: "vero rerum temporibus dolor",
-        completed: true,
-      },
-      {
-        userId: 1,
-        id: "12",
-        title: "ipsa repellendus fugit nisi",
-        completed: true,
-      },
-      {
-        userId: 1,
-        id: "13",
-        title: "et doloremque nulla",
-        completed: false,
-      },
-      {
-        userId: 1,
-        id: "14",
-        title: "repellendus sunt dolores architecto voluptatum",
-        completed: true,
-      },
-      {
-        userId: 1,
-        id: "15",
-        title: "ab voluptatum amet voluptas",
-        completed: true,
-      },
-      {
-        userId: 1,
-        id: "16",
-        title: "accusamus eos facilis sint et aut voluptatem",
-        completed: true,
-      },
-      {
-        userId: 1,
-        id: "17",
-        title: "quo laboriosam deleniti aut qui",
-        completed: true,
-      },
-      {
-        userId: 1,
-        id: "18",
-        title: "dolorum est consequatur ea mollitia in culpa",
-        completed: false,
-      },
-      {
-        userId: 1,
-        id: "19",
-        title: "molestiae ipsa aut voluptatibus pariatur dolor nihil",
-        completed: true,
-      },
-      {
-        userId: 1,
-        id: "20",
-        title: "ullam nobis libero sapiente ad optio sint",
-        completed: true,
-      },
-    ];
-    setTaskList(allTaskList);
-  }, []);
+function TaskDisplay({userId}) {
 
+  const [allTaskList, setAllTaskList] = useState([]); // מצב (State) לאחסון הנתונים מהשרת
+  const [loading, setLoading] = useState(true); // מצב (State) להצגת טעינה
+  const [error, setError] = useState(null); // מצב (State) לשמירת שגיאות
   const [taskList, setTaskList] = useState(allTaskList);
 
+  useEffect(() => {
+    const fetchTodos = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/todos?userId=${userId}`); 
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setAllTaskList(data); 
+      } catch (error) {
+        setError(error.message); 
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTodos(); 
+  }, [allTaskList]); 
+
+  useEffect(()=>{setTaskList([...allTaskList])},[allTaskList])
+
+  if (loading) {
+    return <div>Loading...</div>; 
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+
+
+
+
+
+
   return (
-    <taskListContext.Provider value={{ taskList, setTaskList, allTaskList }}>
-      <body>
-        
-      
-      <div id="controls">
-        <TaskSortControl />
-        <TaskFilters />
-        <TaskInput2 userId={userId} />
-        <TaskList />
+    <taskListContext.Provider value={{ taskList, setTaskList, allTaskList ,setAllTaskList }}>
+      <div className="task-container">
+        <div id="controls">
+          <TaskSortControl />
+          <TaskFilters />
+          <AddTask userId={userId} />
+          <TaskList />
+        </div>
       </div>
-      </body>
     </taskListContext.Provider>
   );
 }
