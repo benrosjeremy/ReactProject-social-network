@@ -44,7 +44,7 @@ function TaskSortControl() {
   return (
     <div class="control-group">
       <label for="sort-select">מיון לפי:</label>
-      <select onChange={handleChange}>
+      <select className="select-task" onChange={handleChange}>
         <option value="changeDirection">מלמטה ללמעלה /מלמעלה ללמטה</option>
         <option value="sortByAlphaAscending">אלפביתי עולה</option>
         <option value="sortByAlphaDescending">אלפביתי יורד</option>

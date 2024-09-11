@@ -46,14 +46,14 @@ function TaskFilters() {
     }
   return (
     <div class="control-group">
-    <input ref={inputElement} type="text" id="search-input" placeholder="חיפוש..."/>
-    <select ref={selectElement} id="search-type">
+    <input ref={inputElement} className='input-task' type="text" id="search-input" placeholder="חיפוש..."/>
+    <select ref={selectElement} id="search-type" className='select-task'>
         <option value="number"> החל מ מספר סידורי</option>
         <option value="title">כותרת</option>
         <option value="statusCompleted">הושלם</option>
         <option value="statusNotCompleted">לא הושלם</option>
     </select>
-    <button id="search-button" onClick={handleFilters}>חפש</button>
+    <button id="search-button button-task" onClick={handleFilters}>חפש</button>
 </div>
 )
 }

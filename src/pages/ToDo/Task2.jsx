@@ -30,6 +30,7 @@ function Task2(props) {
   return (
     <li className="todo-item">
       <input
+      className="input-task"
         type="checkbox"
         checked={completed}
         onClick={(e) => {
@@ -39,7 +40,7 @@ function Task2(props) {
       />
       <span className="item-number">{props.index + 1}</span>
       <span className={completed && "completed"}>{props.taskObj.title}</span>
-      <button className="delete-btn" onClick={deleteTask}>
+      <button className="delete-btn button-task" onClick={deleteTask}>
         מחק
       </button>
     </li>

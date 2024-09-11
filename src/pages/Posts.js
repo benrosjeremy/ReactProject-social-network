@@ -74,23 +74,26 @@ const Posts = ({ userId }) => {
       <div>
         <h2>הוסף פוסט חדש</h2>
         <input
+        className="input-b"
           type="text"
           placeholder="כותרת הפוסט"
           value={newPostTitle}
           onChange={(e) => setNewPostTitle(e.target.value)}
         />
         <input
+         className="input-b"
           type="text"
           placeholder="תוכן הפוסט"
           value={newPostBody}
           onChange={(e) => setNewPostBody(e.target.value)}
         />
-        <button onClick={handleAddPost}>הוסף פוסט</button>
+        <button className="button-b" onClick={handleAddPost}>הוסף פוסט</button>
       </div>
 
       <div>
         <label>חיפוש: </label>
         <input
+         className="input-b"
           type="text"
           value={search}
           onChange={handleSearchChange}
@@ -105,26 +108,27 @@ const Posts = ({ userId }) => {
               <h3>
                 {post.id}. {post.title}
               </h3>
-              <button onClick={() => handleSelectPost(post.id)}>
+              <button className="button-b" onClick={() => handleSelectPost(post.id)}>
                 {selectedPostId === post.id ? "סגור" : "בחר"}
               </button>
 
               {selectedPostId === post.id && (
                 <div>
                   <p>{post.body}</p>
-                  <button onClick={() => handleDeletePost(post.id)}>
+                  <button className="button-b" onClick={() => handleDeletePost(post.id)}>
                     מחק פוסט
                   </button>
 
                   {/* הוספת תגובה */}
                   <div>
                     <input
+                     className="input-b"
                       type="text"
                       placeholder="הוסף תגובה"
                       value={newComment}
                       onChange={(e) => setNewComment(e.target.value)}
                     />
-                    <button onClick={() => handleAddComment(post.id)}>
+                    <button  className="button-b" onClick={() => handleAddComment(post.id)}>
                       הוסף תגובה
                     </button>
                   </div>

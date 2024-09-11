@@ -47,8 +47,8 @@ function AddTask({userId}) {
 
   return (
     <div id="add-todo-group" class="control-group">
-      <input ref={inputElement} type="text" id="new-todo" placeholder="הוסף מטלה חדשה" />
-      <button id="add-todo" onClick={addTask}>
+      <input ref={inputElement} type="text" id="new-todo" className="input-task" placeholder="הוסף מטלה חדשה" />
+      <button id="add-todo" className="button-task" onClick={addTask}>
         הוסף
       </button>
     </div>

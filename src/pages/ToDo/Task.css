@@ -6,11 +6,11 @@
     background-color: #f0f0f0;
     color: #333;
 }
-h1 {
+/* h1 {
     text-align: center;
     color: #2c3e50;
     margin-bottom: 30px;
-}
+} */
 #todo-list {
     list-style-type: none;
     padding: 0;
@@ -29,7 +29,7 @@ h1 {
     transform: translateY(-3px);
     box-shadow: 0 4px 6px rgba(0,0,0,0.15);
 }
-.todo-item input[type="checkbox"] {
+.todo-item .input-task[type="checkbox"] {
     margin-left: 15px;
     transform: scale(1.2);
 }
@@ -67,21 +67,21 @@ h1 {
     border-radius: 8px;
     border: 1px solid #a3e4d7;
 }
-input, select, button {
+.input-task .select-task .button-task {
     padding: 8px 12px;
     margin-right: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
 }
-button {
+.button-task {
     background-color: #3498db;
     color: white;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-button:hover {
+.button-task:hover {
     background-color: #2980b9;
 }
 #task-count {
